@@ -50,6 +50,28 @@ public class Catalog {
     }
 
     public String find(String query) {
-       return query;
+       String result = "";
+
+       if (storedItem1.prepareSearchableString().contains(query)) {
+           result += " - " + storedItem1.getDisplayName() + "\n";
+       }
+
+        if (storedItem2.prepareSearchableString().contains(query)) {
+            result += " - " + storedItem2.getDisplayName() + "\n";
+        }
+
+        if (storedItem3.prepareSearchableString().contains(query)) {
+            result += " - " + storedItem3.getDisplayName() + "\n";
+        }
+
+        if (storedItem4.prepareSearchableString().contains(query)) {
+            result += " - " + storedItem4.getDisplayName() + "\n";
+        }
+
+        if (result.isEmpty()) {
+            result = "Zadny zaznam nevyhovuje...";
+        }
+
+        return result;
     }
 }
