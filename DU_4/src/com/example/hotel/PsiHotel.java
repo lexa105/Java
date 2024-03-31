@@ -25,12 +25,36 @@ public class PsiHotel {
     }
 
     public void zastekejVsichniPsi() {
-        for (Bouda bouda: this.boudy)
-        {
-            for (Pes pes: bouda.getUbytovaniPsi()) {
+        if (boudy != null) {
+            for (Bouda bouda: this.boudy)
+            {
+                for (Pes pes: bouda.getUbytovaniPsi()) {
 
+                }
             }
         }
+    }
+
+    public boolean   isObsazeno() {
+        int pocetboud = boudy.size();
+        int volnemisto = this.maximalniObjemProBoudy - pocetboud;
+        if(pocetboud == this.maximalniObjemProBoudy) {
+            return true;
+        } else {
+            System.out.println("Ještě se tu vejde: " + volnemisto);
+            return false;
+        }
+
+    }
+
+    public boolean ubytujPsa(Pes pes) {
+
+    }
+
+
+
+    public void vypisBoudySePsi() {
+        return this.boudy;
     }
 
 }

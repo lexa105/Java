@@ -1,4 +1,7 @@
 package com.example.hotel;
+import java.util.Random;
+
+
 
 public class Pes {
 
@@ -7,16 +10,19 @@ public class Pes {
     private String jmeno;
     private String barva;
     private int delka;
+    private Bouda bouda;
 
-//    public Pes(String jmeno, int delka){
-//        this(jmeno, delka, VYCHOZI_BARVA_PSA);
-//    }
 
-    public Pes(String jmeno, String barva, int delka) {
-        this.jmeno = jmeno;
-        this.barva = barva;
-        this.delka = delka;
+    public Pes(String jmeno, int delka) {
+        this(jmeno, delka, VYCHOZI_BARVA_PSA);
     }
+    public Pes(String jmeno, int delka, String barva) {
+        this.jmeno = jmeno;
+        this.delka = delka;
+        this.barva = barva;
+        this.bouda = null;
+    }
+
 
     public String getJmeno() {
         return jmeno;
@@ -43,8 +49,16 @@ public class Pes {
     }
 
     public String zastekej() {
+        Random rand = new Random();
+        int upperBound = 1;
+        int int_random = rand.nextInt(upperBound);
         String stekot = "Haf haf";
+        String stekot_eng = "Woof woof";
 
-        return stekot;
+        if(int_random == 0) {
+            return stekot;
+        } else {
+            return stekot_eng;
+        }
     }
 }

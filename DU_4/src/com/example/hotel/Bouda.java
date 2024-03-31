@@ -1,6 +1,5 @@
 package com.example.hotel;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public interface Bouda {
@@ -10,6 +9,6 @@ public interface Bouda {
     public boolean pridejPsa(Pes pes);
     public boolean odeberPsa(Pes pes);
     public boolean ubytovavaPsa(Pes pes);
-    public HashSet<Pes> getUbytovaniPsi();
+    public Set<Pes> getUbytovaniPsi();
     public int getObjem();
 }

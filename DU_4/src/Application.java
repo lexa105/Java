@@ -15,7 +15,7 @@ public class Application {
         hotel.vypisBoudySePsi(); // Prázdné
 
         // Ubytování psa
-        Pes karel = new Pes("Karel", 1);
+        Pes karel = new Pes("Karel", 1 );
         hotel.ubytujPsa(karel);
 
         Pes jiri = new Pes("Jiří", 2);
