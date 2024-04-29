@@ -21,7 +21,7 @@ public interface IHra
      *  
      *  @return  vrací se řetězec, který se má vypsat na obrazovku
      */
-    public String vratUvitani();
+    public void vratUvitani();
     
     /**
      *  Vrátí závěrečnou zprávu pro hráče.
@@ -46,8 +46,7 @@ public interface IHra
      *@return          vrací se řetězec, který se má vypsat na obrazovku
      */
      public String zpracujPrikaz(String radek);
-   
-    
+
      /**
      *  Metoda vrátí odkaz na herní plán, je využita hlavně v testech,
      *  kde se jejím prostřednictvím získává aktualní místnost hry.

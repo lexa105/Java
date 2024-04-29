@@ -1,6 +1,12 @@
 package cz.vse.adventura.logika;
 
 
+import cz.vse.adventura.entity.Batoh;
+import cz.vse.adventura.entity.Prostor;
+import cz.vse.adventura.entity.Vec;
+
+import java.util.Set;
+
 /**
  *  Class HerniPlan - třída představující mapu a stav adventury.
  * 
@@ -15,6 +21,8 @@ package cz.vse.adventura.logika;
 public class HerniPlan {
     
     private Prostor aktualniProstor;
+    private Batoh aktualniBatoh;
+
     
      /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
@@ -22,6 +30,7 @@ public class HerniPlan {
      */
     public HerniPlan() {
         zalozProstoryHry();
+        zalozBatoh();
 
     }
     /**
@@ -45,6 +54,8 @@ public class HerniPlan {
         hlubokyLes.setVychod(chaloupka);
         jeskyne.setVychod(hlubokyLes);
         chaloupka.setVychod(hlubokyLes);
+
+
                 
         aktualniProstor = domecek;  // hra začíná v domečku       
     }
@@ -54,6 +65,10 @@ public class HerniPlan {
      *
      *@return     aktuální prostor
      */
+
+    private void zalozBatoh() {
+        this.aktualniBatoh = new Batoh();
+    }
     
     public Prostor getAktualniProstor() {
         return aktualniProstor;
@@ -67,5 +82,6 @@ public class HerniPlan {
     public void setAktualniProstor(Prostor prostor) {
        aktualniProstor = prostor;
     }
+
 
 }

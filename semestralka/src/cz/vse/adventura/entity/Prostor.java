@@ -1,10 +1,6 @@
-package cz.vse.adventura.logika;
+package cz.vse.adventura.entity;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -19,11 +15,12 @@ import java.util.stream.Collectors;
  * @author Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova
  * @version pro školní rok 2016/2017
  */
-public class    Prostor {
+public class Prostor {
 
     private String nazev;
     private String popis;
     private Set<Prostor> vychody;   // obsahuje sousední místnosti
+    private Map<String, Vec> veciNaZemi;
 
     /**
      * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
@@ -37,6 +34,7 @@ public class    Prostor {
         this.nazev = nazev;
         this.popis = popis;
         vychody = new HashSet<>();
+        veciNaZemi = new HashMap<>();
     }
 
     /**
@@ -51,6 +49,10 @@ public class    Prostor {
      */
     public void setVychod(Prostor vedlejsi) {
         vychody.add(vedlejsi);
+    }
+
+    public void setVeciNaZemi(Vec item) {
+            veciNaZemi.put(item.getNazev(), item);
     }
 
     /**
@@ -168,5 +170,16 @@ public class    Prostor {
      */
     public Collection<Prostor> getVychody() {
         return Collections.unmodifiableCollection(vychody);
+    }
+
+    public Vec odeberVec(String nazevVeci) {
+        if(veciNaZemi.containsKey(nazevVeci)){
+            Vec odebranaVec = veciNaZemi.get(nazevVeci);
+            veciNaZemi.remove(nazevVeci);
+            return  odebranaVec;
+        } else {
+            return null;
+        }
+
     }
 }

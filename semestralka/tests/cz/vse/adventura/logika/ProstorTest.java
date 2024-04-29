@@ -1,6 +1,7 @@
 package cz.vse.adventura.logika;
 
 
+import cz.vse.adventura.entity.Prostor;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

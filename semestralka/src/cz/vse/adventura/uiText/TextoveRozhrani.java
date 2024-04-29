@@ -34,7 +34,8 @@ public class TextoveRozhrani {
      *  hodnotu true). Nakonec vypíše text epilogu.
      */
     public void hraj() {
-        System.out.println(hra.vratUvitani());
+        //Zmeneno metoda vratuvitani() na void methodu pro esteticke upravy.
+        hra.vratUvitani();
         // základní cyklus programu - opakovaně se čtou příkazy a poté
         // se provádějí do konce hry.
 

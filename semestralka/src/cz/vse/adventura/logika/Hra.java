@@ -1,5 +1,7 @@
 package cz.vse.adventura.logika;
 
+import cz.vse.adventura.prikazy.*;
+
 /**
  *  Třída Hra - třída představující logiku adventury.
  * 
@@ -31,12 +33,21 @@ public class Hra implements IHra {
     /**
      *  Vrátí úvodní zprávu pro hráče.
      */
-    public String vratUvitani() {
-        return "Vítejte!\n" +
-               "Toto je příběh o Červené Karkulce, babičce a vlkovi.\n" +
-               "Napište 'nápověda', pokud si nevíte rady, jak hrát dál.\n" +
-               "\n" +
-               herniPlan.getAktualniProstor().dlouhyPopis();
+    public void vratUvitani() {
+        String intro = "Vítejte!\n" +
+                "Toto je příběh o Červené Karkulce, babičce a vlkovi.\n" +
+                "Napište 'nápověda', pokud si nevíte rady, jak hrát dál.\n" +
+                "\n" +
+                herniPlan.getAktualniProstor().dlouhyPopis();
+        for (int i = 0; i < intro.length(); i++) {
+            System.out.print(intro.charAt(i));
+            try{
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
     
     /**
@@ -86,7 +97,7 @@ public class Hra implements IHra {
      *  
      *  @param  konecHry  hodnota false= konec hry, true = hra pokračuje
      */
-    void setKonecHry(boolean konecHry) {
+    public void setKonecHry(boolean konecHry) {
         this.konecHry = konecHry;
     }
     
