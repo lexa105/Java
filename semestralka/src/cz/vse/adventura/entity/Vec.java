@@ -9,11 +9,10 @@ public class Vec {
     private boolean isMoveable;
     private IPrikaz interakce;
 
-    public Vec(String nazev, String popis, boolean isMoveable, IPrikaz interakce) {
-        nazev = this.nazev;
-        popis = this.popis;
-        isMoveable = this.isMoveable;
-        interakce = this.interakce;
+    public Vec(String nazev, String popis, boolean isMoveable) {
+        this.nazev = nazev;
+        this.popis = popis;
+        this.isMoveable = isMoveable;
     }
 
     public String getNazev() {

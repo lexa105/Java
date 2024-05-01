@@ -28,6 +28,7 @@ public class PrikazSeber implements IPrikaz{
         }
 
         String nazev = parametry[0];
+
         Prostor aktualniProstor = this.plan.getAktualniProstor();
         Batoh aktualniBatoh = this.plan.getAktualniBatoh();
 
@@ -36,9 +37,10 @@ public class PrikazSeber implements IPrikaz{
             if(sebranaVec != null) {
                 aktualniBatoh.addItem(sebranaVec);
                 return sebranaVec.getNazev() + " sebrana ze zeme";
+            } else {
+                return nazev + "  v prostoru není";
             }
 
-            return parametry + " taková věc v prostoru není";
         } catch (IllegalStateException exception) {
             return exception.getMessage();
         }

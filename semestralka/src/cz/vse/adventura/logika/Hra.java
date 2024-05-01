@@ -27,7 +27,11 @@ public class Hra implements IHra {
         platnePrikazy = new SeznamPrikazu();
         platnePrikazy.vlozPrikaz(new PrikazNapoveda(platnePrikazy));
         platnePrikazy.vlozPrikaz(new PrikazJdi(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazScan(herniPlan));
+
+        platnePrikazy.vlozPrikaz(new PrikazSeber(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazKonec(this));
+
     }
 
     /**
@@ -42,7 +46,7 @@ public class Hra implements IHra {
         for (int i = 0; i < intro.length(); i++) {
             System.out.print(intro.charAt(i));
             try{
-                Thread.sleep(500);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

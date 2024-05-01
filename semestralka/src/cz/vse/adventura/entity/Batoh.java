@@ -31,7 +31,7 @@ public class Batoh {
     //Vec bude moci byt vyndana z batohu na zem prostoru. Vrati Vec a da ji do prostoru.
     public Vec removeItem(String itemName) {
         //TODO: Dodelat
-        if(inventory.containsKey(itemName)) {
+        if (inventory.containsKey(itemName)) {
             Vec removedItem = inventory.get(itemName);
             inventory.remove(removedItem);
             return removedItem;
@@ -39,8 +39,5 @@ public class Batoh {
             return null;
         }
 
-
     }
-
-
 }

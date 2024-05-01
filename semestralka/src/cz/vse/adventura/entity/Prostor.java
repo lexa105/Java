@@ -159,6 +159,14 @@ public class Prostor {
         }
     }
 
+    public Set<Vec> vratVeciNaZemi() {
+        Set<Vec> veci = new HashSet<>();
+        for (Vec vec : veciNaZemi.values()) {
+            veci.add(vec);
+        }
+        return veci;
+    }
+
     /**
      * Vrací kolekci obsahující prostory, se kterými tento prostor sousedí.
      * Takto získaný seznam sousedních prostor nelze upravovat (přidávat,
