@@ -83,5 +83,7 @@ public class HerniPlan {
        aktualniProstor = prostor;
     }
 
-
+    public Batoh getAktualniBatoh() {
+        return aktualniBatoh;
+    }
 }

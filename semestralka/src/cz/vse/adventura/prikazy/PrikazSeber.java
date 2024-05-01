@@ -1,5 +1,6 @@
 package cz.vse.adventura.prikazy;
 
+import cz.vse.adventura.entity.Batoh;
 import cz.vse.adventura.entity.Prostor;
 import cz.vse.adventura.entity.Vec;
 import cz.vse.adventura.logika.HerniPlan;
@@ -28,15 +29,19 @@ public class PrikazSeber implements IPrikaz{
 
         String nazev = parametry[0];
         Prostor aktualniProstor = this.plan.getAktualniProstor();
-        Vec sebranaVec = aktualniProstor.
+        Batoh aktualniBatoh = this.plan.getAktualniBatoh();
 
         try {
-            this.plan.seberVec(nazev);
+            Vec sebranaVec = aktualniProstor.odeberVec(nazev);
+            if(sebranaVec != null) {
+                aktualniBatoh.addItem(sebranaVec);
+                return sebranaVec.getNazev() + " sebrana ze zeme";
+            }
 
+            return parametry + " taková věc v prostoru není";
         } catch (IllegalStateException exception) {
             return exception.getMessage();
         }
-        return "Vec '" + nazev + "' je nyni v batohu. \n" +
-                this.plan.getPopisBatohu();
+
     }
 }

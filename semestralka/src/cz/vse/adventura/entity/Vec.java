@@ -39,4 +39,6 @@ public class Vec {
     public void setInterakce(IPrikaz interakce) {
         this.interakce = interakce;
     }
+
+
 }
