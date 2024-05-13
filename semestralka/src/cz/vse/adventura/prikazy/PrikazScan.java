@@ -1,14 +1,15 @@
 package cz.vse.adventura.prikazy;
 
+import cz.vse.adventura.entity.Batoh;
+import cz.vse.adventura.entity.Prostor;
 import cz.vse.adventura.entity.Vec;
 import cz.vse.adventura.logika.HerniPlan;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class PrikazScan implements IPrikaz{
 
-    private static final String NAZEV = "skenuj";
+    private static final String NAZEV = "vypiš";
     private HerniPlan plan;
 
     public PrikazScan(HerniPlan plan) {
@@ -31,13 +32,14 @@ public class PrikazScan implements IPrikaz{
     @Override
     public String provedPrikaz(String... parametry) {
 
-        Set<Vec> veci = this.plan.getAktualniProstor().vratVeciNaZemi();
-        Set<String> nazvyveci = new HashSet<>();
-        for (Vec vec : veci) {
-            nazvyveci.add(vec.getNazev());
+        if(parametry.length == 0) {
+            // pokud chybí druhé slovo (název věci), tak ....
+            return "Co mám vypsat - musíš napsat prostor nebo baťoh, abych mohl vypsat.";
         }
-        return nazvyveci.toString();
 
+        String nazev = parametry[0];
+
+        return plan.vypis(nazev);
     }
 
 

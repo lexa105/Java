@@ -5,7 +5,7 @@ import cz.vse.adventura.entity.Batoh;
 import cz.vse.adventura.entity.Prostor;
 import cz.vse.adventura.entity.Vec;
 
-import java.util.Set;
+import java.util.*;
 
 /**
  *  Class HerniPlan - třída představující mapu a stav adventury.
@@ -73,6 +73,14 @@ public class HerniPlan {
     private void zalozBatoh() {
         this.aktualniBatoh = new Batoh();
     }
+
+    /**
+     *  Zalozi batoh jako inventar pro hrace.
+     * @return
+     */
+    public Batoh getAktualniBatoh() {
+        return aktualniBatoh;
+    }
     
     public Prostor getAktualniProstor() {
         return aktualniProstor;
@@ -87,7 +95,51 @@ public class HerniPlan {
        aktualniProstor = prostor;
     }
 
-    public Batoh getAktualniBatoh() {
-        return aktualniBatoh;
+
+    public String seberVec(String nazev) {
+        if (aktualniBatoh == null) {
+            return "Nemáš žádný batoh";
+        } else
+        try {
+            Vec sebranaVec = aktualniProstor.odeberVec(nazev);
+            if(sebranaVec != null) {
+                aktualniBatoh.addItem(sebranaVec);
+                return sebranaVec.getNazev() + " sebrana ze zeme";
+            } else {
+                return nazev + "  v prostoru není";
+            }
+
+        } catch (IllegalStateException exception) {
+            return exception.getMessage();
+        }
     }
+
+    public String vypis(String nazev) {
+
+        if (Objects.equals(nazev, "batoh")) {
+            System.out.println("Vypisuji batoh");
+            LinkedHashMap<String, Vec> inventar = aktualniBatoh.getInventory();
+            Set<String> nazvyveci = inventar.keySet();
+            String vysledek = nazvyveci.toString();
+            return vysledek;
+
+        } else if (Objects.equals(nazev, "prostor")) {
+            System.out.println("Vypisuji prostor");
+            Set<String> nazvyveci = new HashSet<>();
+            Collection<Prostor> vychody = aktualniProstor.getVychody();
+            Set<Vec> veci = aktualniProstor.vratVeciNaZemi();
+            for (Vec vec : veci) {
+                nazvyveci.add(vec.getNazev());
+            }
+            String vyseledek = "Veci na zemi:" + nazvyveci + "\n"
+                    + "Vystupy:" +  vychody.toString();
+
+            return vyseledek;
+        }
+        else {
+            return "Nerozumím co chceš vypsat.";
+        }
+
+    }
+
 }

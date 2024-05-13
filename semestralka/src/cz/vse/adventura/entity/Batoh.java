@@ -28,6 +28,7 @@ public class Batoh {
     }
 
 
+
     //Vec bude moci byt vyndana z batohu na zem prostoru. Vrati Vec a da ji do prostoru.
     public Vec removeItem(String itemName) {
         //TODO: Dodelat

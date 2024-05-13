@@ -19,7 +19,8 @@ public class PrikazSeber implements IPrikaz{
     }
 
 
-    //TODO: Dodelat tohle
+    //Prikaz seber.
+    //Hráčovi dovoluje sebrat věc ze země, jeli taková v místnosti
     @Override
     public String provedPrikaz(String... parametry) {
         if(parametry.length == 0) {
@@ -29,21 +30,7 @@ public class PrikazSeber implements IPrikaz{
 
         String nazev = parametry[0];
 
-        Prostor aktualniProstor = this.plan.getAktualniProstor();
-        Batoh aktualniBatoh = this.plan.getAktualniBatoh();
-
-        try {
-            Vec sebranaVec = aktualniProstor.odeberVec(nazev);
-            if(sebranaVec != null) {
-                aktualniBatoh.addItem(sebranaVec);
-                return sebranaVec.getNazev() + " sebrana ze zeme";
-            } else {
-                return nazev + "  v prostoru není";
-            }
-
-        } catch (IllegalStateException exception) {
-            return exception.getMessage();
-        }
+        return plan.seberVec(nazev);
 
     }
 }
