@@ -95,7 +95,6 @@ public class HerniPlan {
        aktualniProstor = prostor;
     }
 
-
     public String seberVec(String nazev) {
         if (aktualniBatoh == null) {
             return "Nemáš žádný batoh";
@@ -112,6 +111,29 @@ public class HerniPlan {
         } catch (IllegalStateException exception) {
             return exception.getMessage();
         }
+    }
+
+
+    public String polozVec(String nazev) {
+        if(aktualniBatoh == null) {
+            return "Nemáš žáadný batoh";
+        }
+        else
+            try {
+                Vec polozenaVec = aktualniBatoh.removeItem(nazev);
+                if(polozenaVec != null) {
+                    aktualniProstor.setVeciNaZemi(polozenaVec);
+                    return polozenaVec.getNazev() + " byla polozena na zem";
+                 }
+                else {
+                    return nazev + "v batohu není, nelze položit na zem.";
+                }
+            }
+            catch (IllegalStateException exception) {
+                return exception.getMessage();
+            }
+
+
     }
 
     public String vypis(String nazev) {
