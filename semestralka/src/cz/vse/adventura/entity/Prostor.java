@@ -180,6 +180,8 @@ public class Prostor {
         return Collections.unmodifiableCollection(vychody);
     }
 
+
+    //Odebere věc z prostoru
     public Vec odeberVec(String nazevVeci) {
         if(veciNaZemi.containsKey(nazevVeci)){
             Vec odebranaVec = veciNaZemi.get(nazevVeci);

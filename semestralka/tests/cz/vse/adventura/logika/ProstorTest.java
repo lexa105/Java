@@ -31,7 +31,7 @@ public class ProstorTest
      * nemusí odpovídat vlastní hře, 
      */
     @Test
-    public  void testLzeProjit() {		
+    public void testLzeProjit() {
         Prostor prostor1 = new Prostor("hala", "vstupní hala budovy VŠE na Jižním městě");
         Prostor prostor2 = new Prostor("bufet", "bufet, kam si můžete zajít na svačinku");
         prostor1.setVychod(prostor2);

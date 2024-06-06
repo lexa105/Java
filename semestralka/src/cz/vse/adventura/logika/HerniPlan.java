@@ -45,6 +45,15 @@ public class HerniPlan {
         Prostor les = new Prostor("les","les s jahodami, malinami a pramenem vody");
         Prostor hlubokyLes = new Prostor("hluboký_les","temný les, ve kterém lze potkat vlka");
 
+
+        //Prostory pro semestrální práci.
+        Prostor kkStart = new Prostor("kamaradsky_kyblik", "Vaše restaurace, která má přesně 0 slovy nula zákazníků");
+        Prostor ulice = new Prostor("ulice", "ulice Conch streets");
+        Prostor krupKrab = new Prostor("krupavy_krab", "Křupavý krab je váš konkurent, jež se mu daří lépe než Vám, udělejte s tím něco!");
+        Prostor jidelna = new Prostor("jidelna", "Jidelna křupavého kraba");
+        Prostor ananas = new Prostor("Spongebobův barák", "Ananas v němž žije Spongebob, je ve tvaru ananasu.");
+
+
         Vec mec = new Vec("hovna", "Mec dava damage", true);
         
         // přiřazují se průchody mezi prostory (sousedící prostory)
