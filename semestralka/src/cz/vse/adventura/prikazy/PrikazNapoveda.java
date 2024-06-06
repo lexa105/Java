@@ -12,7 +12,7 @@ import cz.vse.adventura.prikazy.SeznamPrikazu;
  */
 public class PrikazNapoveda implements IPrikaz {
     
-    private static final String NAZEV = "nápověda";
+    private static final String NAZEV = "napoveda";
     private SeznamPrikazu platnePrikazy;
     
     

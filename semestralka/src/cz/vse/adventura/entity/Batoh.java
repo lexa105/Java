@@ -33,7 +33,7 @@ public class Batoh {
     public Vec removeItem(String itemName) {
         if (inventory.containsKey(itemName)) {
             Vec removedItem = inventory.get(itemName);
-            inventory.remove(removedItem);
+            inventory.remove(itemName);
             return removedItem;
         } else {
             return null;
