@@ -17,11 +17,13 @@ public class Application {
         pause(2300);
 
         loadLyrics("She moans and she falls and you rarely ever see", 3300);
-        loadLyrics("Just where she goes when she's not here standing next to me", 3700);
+        loadLyrics("Just where she goes when she's not here standing next to me",
+                3700);
         loadLyrics("From what I understand, it's somewhat so outlandish", 4200);
-        
-    }
+        loadLyrics("That she don't wanna be", 2500);
+        loadLyrics("seeeen", 1500);
 
+    }
 
     public static void pause(int millisecods) {
         try {
@@ -30,14 +32,14 @@ public class Application {
             e.printStackTrace();
         }
     }
-    public static void loadLyrics(String text, int duration)  {
-        long start = System.currentTimeMillis(); //Starting stopwatch for debugging.
-        int chars = text.length(); //Chars for duration calculation + debugging
 
-        
+    public static void loadLyrics(String text, int duration) {
+        long start = System.currentTimeMillis(); // Starting stopwatch for debugging.
+        int chars = text.length(); // Chars for duration calculation + debugging
+
         int delay = duration / chars;
 
-        for(int i = 0; i < chars; i++) {
+        for (int i = 0; i < chars; i++) {
             System.out.print(text.charAt(i));
             try {
                 Thread.sleep(delay);
@@ -48,19 +50,19 @@ public class Application {
 
         long end = System.currentTimeMillis();
         long result = end - start;
-        
+
         // DEBUG Section
-        
+
         String endStringCharsDelay = "DelayPerChar: " + delay;
         String endStringTime = "Time: " + result;
         String endStringChars = " Chars: " + chars;
-        Set <String> resultString = new HashSet<>();
-        resultString.add(endStringChars);       
-        resultString.add(endStringTime);       
-        resultString.add(endStringCharsDelay);    
-        
+        Set<String> resultString = new HashSet<>();
+        resultString.add(endStringChars);
+        resultString.add(endStringTime);
+        resultString.add(endStringCharsDelay);
+
         System.out.println(" ");
-        //System.out.println(resultString.toString());
-        
+        // System.out.println(resultString.toString());
+
     }
 }
