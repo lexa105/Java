@@ -4,6 +4,7 @@ package cz.vse.adventura.logika;
 import cz.vse.adventura.entity.Batoh;
 import cz.vse.adventura.entity.Prostor;
 import cz.vse.adventura.entity.Vec;
+import cz.vse.adventura.entity.VelkaVec;
 
 import java.util.*;
 
@@ -54,7 +55,8 @@ public class HerniPlan {
         Prostor ananas = new Prostor("Spongebobův barák", "Ananas v němž žije Spongebob, je ve tvaru ananasu.");
 
 
-        Vec mec = new Vec("hovna", "Mec dava damage", true);
+        Vec mec = new Vec("hovna", "Mec dava damage");
+        VelkaVec postel = new VelkaVec("Postel", "Postel kde spíš");
         
         // přiřazují se průchody mezi prostory (sousedící prostory)
         domecek.setVychod(les);
@@ -68,6 +70,9 @@ public class HerniPlan {
         chaloupka.setVychod(hlubokyLes);
 
         domecek.setVeciNaZemi(mec);
+        domecek.setVeciNaZemi(postel);
+
+
 
                 
         aktualniProstor = domecek;  // hra začíná v domečku       
@@ -85,7 +90,7 @@ public class HerniPlan {
 
     /**
      *  Zalozi batoh jako inventar pro hrace.
-     * @return
+     *  @return
      */
     public Batoh getAktualniBatoh() {
         return aktualniBatoh;
@@ -104,21 +109,32 @@ public class HerniPlan {
        aktualniProstor = prostor;
     }
 
+
+    /**
+     *  Metoda sebere věc a dá ji do inventáře hráče.
+     *
+     */
     public String seberVec(String nazev) {
         if (aktualniBatoh == null) {
             return "Nemáš žádný batoh";
-        } else
-        try {
-            Vec sebranaVec = aktualniProstor.odeberVec(nazev);
-            if(sebranaVec != null) {
-                aktualniBatoh.addItem(sebranaVec);
-                return sebranaVec.getNazev() + " sebrana ze zeme";
-            } else {
-                return nazev + "  v prostoru není";
-            }
+        } else {
+            try {
+                Vec sebranaVec = aktualniProstor.odeberVec(nazev);
+                if(sebranaVec != null ) {
+                    if(sebranaVec.isMoveable()) {
+                        aktualniBatoh.addItem(sebranaVec);
+                        return sebranaVec.getNazev() + " sebrana ze zeme";
+                    }
+                    else {
+                        return sebranaVec.getNazev() + "  je moc velká, aby se vešla do batohu";
+                    }
+                } else {
+                    return nazev + " v prostoru není";
+                }
 
-        } catch (IllegalStateException exception) {
-            return exception.getMessage();
+            } catch (IllegalStateException exception) {
+                return exception.getMessage();
+            }
         }
     }
 
@@ -146,7 +162,6 @@ public class HerniPlan {
     }
 
     public String vypis(String nazev) {
-
         if (Objects.equals(nazev, "batoh")) {
             System.out.println("Vypisuji batoh");
             LinkedHashMap<String, Vec> inventar = aktualniBatoh.getInventory();
@@ -170,6 +185,10 @@ public class HerniPlan {
         else {
             return "Nerozumím co chceš vypsat.";
         }
+
+    }
+
+    public void win() {
 
     }
 

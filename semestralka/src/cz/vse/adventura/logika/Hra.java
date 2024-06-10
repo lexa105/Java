@@ -2,6 +2,8 @@ package cz.vse.adventura.logika;
 
 import cz.vse.adventura.prikazy.*;
 
+import java.text.Normalizer;
+
 /**
  *  Třída Hra - třída představující logiku adventury.
  * 

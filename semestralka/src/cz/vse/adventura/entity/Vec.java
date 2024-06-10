@@ -6,13 +6,12 @@ public class Vec {
 
     private String nazev;
     private String popis;
-    private boolean isMoveable;
+    protected boolean isMoveable = true; //Dovoluje použití tohoto booleanu pouze třídám, které dědí tuto vlastnost s třídou "Věc".
     private IPrikaz interakce;
 
-    public Vec(String nazev, String popis, boolean isMoveable) {
+    public Vec(String nazev, String popis) {
         this.nazev = nazev;
         this.popis = popis;
-        this.isMoveable = isMoveable;
     }
 
     public String getNazev() {
