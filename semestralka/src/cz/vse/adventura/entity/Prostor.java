@@ -129,7 +129,7 @@ public class Prostor {
      *
      * @return Popis východů - názvů sousedních prostorů
      */
-    private String popisVychodu() {
+    public String popisVychodu() {
         String vracenyText = "východy:";
         for (Prostor sousedni : vychody) {
             vracenyText += " " + sousedni.getNazev();

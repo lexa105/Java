@@ -46,7 +46,6 @@ public class HerniPlan {
         Prostor les = new Prostor("les","les s jahodami, malinami a pramenem vody");
         Prostor hlubokyLes = new Prostor("hluboký_les","temný les, ve kterém lze potkat vlka");
 
-
         //Prostory pro semestrální práci.
         Prostor kkStart = new Prostor("kamaradsky_kyblik", "Vaše restaurace, která má přesně 0 slovy nula zákazníků");
         Prostor ulice = new Prostor("ulice", "ulice Conch streets");
@@ -141,7 +140,7 @@ public class HerniPlan {
 
     public String polozVec(String nazev) {
         if(aktualniBatoh == null) {
-            return "Nemáš žáadný batoh";
+            return "Nemáš žádný batoh";
         }
         else
             try {
@@ -161,35 +160,29 @@ public class HerniPlan {
 
     }
 
-    public String vypis(String nazev) {
-        if (Objects.equals(nazev, "batoh")) {
-            System.out.println("Vypisuji batoh");
-            LinkedHashMap<String, Vec> inventar = aktualniBatoh.getInventory();
-            Set<String> nazvyveci = inventar.keySet();
-            String vysledek = nazvyveci.toString();
-            return vysledek;
 
-        } else if (Objects.equals(nazev, "prostor")) {
-            System.out.println("Vypisuji prostor");
-            Set<String> nazvyveci = new HashSet<>();
-            Collection<Prostor> vychody = aktualniProstor.getVychody();
-            Set<Vec> veci = aktualniProstor.vratVeciNaZemi();
-            for (Vec vec : veci) {
-                nazvyveci.add(vec.getNazev());
-            }
-            String vyseledek = "Veci na zemi:" + nazvyveci + "\n"
-                    + "Vystupy:" +  vychody.toString();
-
-            return vyseledek;
-        }
-        else {
-            return "Nerozumím co chceš vypsat.";
-        }
-
+    // Vrátí, co všechno se nachází v batohu hráče.
+    public String vypisBatoh() {
+        System.out.println("Vypisuji batoh...");
+        LinkedHashMap<String, Vec> inventar = aktualniBatoh.getInventory();
+        Set<String> nazvyveci = inventar.keySet();
+        String vysledek = nazvyveci.toString();
+        return vysledek;
     }
+    public String vypisProstor() {
+        System.out.println("Vypisuji prostor...");
+        Set<String> nazvyveci = new HashSet<>();
+        String vychody = aktualniProstor.popisVychodu();
+        Set<Vec> veci = aktualniProstor.vratVeciNaZemi();
 
-    public void win() {
+        for (Vec vec : veci) {
+            nazvyveci.add(vec.getNazev());
+        }
 
+        String vyseledek = "Veci na zemi: " + nazvyveci + "\n"
+                + vychody;
+
+        return vyseledek;
     }
 
 }

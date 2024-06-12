@@ -39,7 +39,15 @@ public class PrikazScan implements IPrikaz{
 
         String nazev = parametry[0];
 
-        return plan.vypis(nazev);
+        if (Objects.equals(nazev, "batoh")) {
+            return plan.vypisBatoh();
+        } else if (Objects.equals(nazev, "prostor")) {
+            return plan.vypisProstor();
+        }
+        else {
+            return "Nevím co chceš vypsat - musíš zadat buď: batoh    prostor";
+        }
+
     }
 
 
