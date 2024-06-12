@@ -47,34 +47,53 @@ public class HerniPlan {
         Prostor hlubokyLes = new Prostor("hluboký_les","temný les, ve kterém lze potkat vlka");
 
         //Prostory pro semestrální práci.
-        Prostor kkStart = new Prostor("kamaradsky_kyblik", "Vaše restaurace, která má přesně 0 slovy nula zákazníků");
+        Prostor kkStart = new Prostor("Kamaradasky_Kyblik", "Vaše restaurace, která má přesně 0 slovy nula zákazníků");
         Prostor ulice = new Prostor("ulice", "ulice Conch streets");
-        Prostor krupKrab = new Prostor("krupavy_krab", "Křupavý krab je váš konkurent, jež se mu daří lépe než Vám, udělejte s tím něco!");
+        Prostor krupavyKrab = new Prostor("krupavy_krab", "Křupavý krab je váš konkurent, jež se mu daří lépe než Vám, udělejte s tím něco!");
         Prostor jidelna = new Prostor("jidelna", "Jidelna křupavého kraba");
-        Prostor ananas = new Prostor("Spongebobův barák", "Ananas v němž žije Spongebob, je ve tvaru ananasu.");
+        Prostor kuchyn = new Prostor("kuchyn", "Zde se dělá Krabí Hambáč, nedělá ho nikdo jiný než Spongebob v Kalhotách");
+        Prostor kancelar = new Prostor("kancelar", "Zde sídlí pan Krabs a taky tajný recept.");
+        Prostor sejf = new Prostor("sejf", "Za tímto sejfem je Tajný recept na krabí hambáč.");
+        Prostor sejfIn = new Prostor("vnitrek", "Dostal ses dovnitř najdi recept.");
+        //Zachody
+        Prostor wc = new Prostor("zachody", "Zde jsou záchody");
+        Prostor zachod1 = new Prostor("zachod1", "Zachod #1");
+        Prostor zachod2 = new Prostor("zachod2", "Zachod #2");
+        Prostor spongebobDum = new Prostor("spongebob_dum", "Ananas v němž žije Spongebob, je ve tvaru ananasu.");
+        Prostor sepiakDum = new Prostor("sepiak_dum", "Dům ve kterém bydlí Sépiák");
+        Prostor patrikDum = new Prostor("patrik_dum", "Tady bydlí Patrik hvězdice, je to kámen...");
+
+
+
+
+        //Kamaradsky kyblik start
+        kkStart.setVychod(ulice);
+
+        ulice.setVychod(krupavyKrab);
+        ulice.setVychod(spongebobDum);
+        ulice.setVychod(sepiakDum);
+        ulice.setVychod(patrikDum);
+
+        krupavyKrab.setVychod(jidelna);
+
+        jidelna.setVychod(kuchyn);
+        jidelna.setVychod(kancelar);
+        jidelna.setVychod(wc);
+
+        kancelar.setVychod(sejf);
+
+        sejf.setVychod(sejfIn);
+
+        wc.setVychod(zachod1);
+        wc.setVychod(zachod2);
 
 
         Vec mec = new Vec("hovna", "Mec dava damage");
         VelkaVec postel = new VelkaVec("Postel", "Postel kde spíš");
-        
-        // přiřazují se průchody mezi prostory (sousedící prostory)
-        domecek.setVychod(les);
-
-        les.setVychod(domecek);
-        les.setVychod(hlubokyLes);
-        hlubokyLes.setVychod(les);
-        hlubokyLes.setVychod(jeskyne);
-        hlubokyLes.setVychod(chaloupka);
-        jeskyne.setVychod(hlubokyLes);
-        chaloupka.setVychod(hlubokyLes);
-
-        domecek.setVeciNaZemi(mec);
-        domecek.setVeciNaZemi(postel);
-
 
 
                 
-        aktualniProstor = domecek;  // hra začíná v domečku       
+        aktualniProstor = kkStart;  // hra začíná v domečku
     }
     
     /**
@@ -165,18 +184,37 @@ public class HerniPlan {
     public String vypisBatoh() {
         System.out.println("Vypisuji batoh...");
         LinkedHashMap<String, Vec> inventar = aktualniBatoh.getInventory();
-        Set<String> nazvyveci = inventar.keySet();
+        Set<String> nazvyveci = new HashSet<>();
+        for (Vec veci : inventar.values()) {
+            if(!veci.isMoveable()) {
+                //Styl a barva textů
+                final String RED_ITALIC = "\033[31m";
+                final String RESET = "\033[0m";
+                String styledNazev = RED_ITALIC + veci.getNazev() + RESET;
+                nazvyveci.add(styledNazev);
+            }
+            else {
+                nazvyveci.add(veci.getNazev());
+            }
+        }
         String vysledek = nazvyveci.toString();
         return vysledek;
     }
     public String vypisProstor() {
         System.out.println("Vypisuji prostor...");
-        Set<String> nazvyveci = new HashSet<>();
         String vychody = aktualniProstor.popisVychodu();
         Set<Vec> veci = aktualniProstor.vratVeciNaZemi();
-
+        Set<String> nazvyveci = new HashSet<>();
         for (Vec vec : veci) {
-            nazvyveci.add(vec.getNazev());
+            if(!vec.isMoveable()) {
+                final String RED_ITALIC = "\033[31m";
+                final String RESET = "\033[0m";
+                String styledNazev = RED_ITALIC + vec.getNazev() + RESET;
+                nazvyveci.add(styledNazev);
+            }
+            else {
+                nazvyveci.add(vec.getNazev());
+            }
         }
 
         String vyseledek = "Veci na zemi: " + nazvyveci + "\n"
@@ -184,5 +222,6 @@ public class HerniPlan {
 
         return vyseledek;
     }
+
 
 }
