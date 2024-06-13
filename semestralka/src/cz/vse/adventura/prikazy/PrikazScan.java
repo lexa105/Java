@@ -20,15 +20,16 @@ public class PrikazScan implements IPrikaz{
         return NAZEV;
     }
 
-    public void scanloading() throws InterruptedException{
-        System.out.println("Skenuji mistnost");
-        boolean isLoading = true;
-        String dots = "...";
-        while (isLoading) {
-            System.out.print("\\r...");
+    public void scanloading(String scanning) throws InterruptedException{
+        System.out.print("Vypisuji " + scanning);
+        for (int i = 0; i < 3; i++) {
+            System.out.print(".");
             Thread.sleep(500);
         }
+        System.out.print("\n");
+
     }
+
     @Override
     public String provedPrikaz(String... parametry) {
 
@@ -40,8 +41,15 @@ public class PrikazScan implements IPrikaz{
         String nazev = parametry[0];
 
         if (Objects.equals(nazev, "batoh")) {
+            System.out.println("Vypisuji batoh...");
             return plan.vypisBatoh();
+
         } else if (Objects.equals(nazev, "prostor")) {
+            try {
+                scanloading("prostor");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             return plan.vypisProstor();
         }
         else {

@@ -47,6 +47,8 @@ public class TextoveRozhrani {
         System.out.println(hra.vratEpilog());
     }
 
+
+
     /**
      *  Metoda přečte příkaz z příkazového řádku
      *

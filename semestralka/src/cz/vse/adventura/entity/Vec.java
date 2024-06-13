@@ -6,6 +6,8 @@ public class Vec {
 
     private String nazev;
     private String popis;
+
+    boolean isNPC = false;
     protected boolean isMoveable = true; //Dovoluje použití tohoto booleanu pouze třídám, které dědí tuto vlastnost s třídou "Věc".
 
     public Vec(String nazev, String popis) {
@@ -32,6 +34,8 @@ public class Vec {
     public boolean isMoveable() {
         return isMoveable;
     }
+
+    public boolean isNPC() { return isNPC; }
 
 
 

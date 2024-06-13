@@ -1,10 +1,7 @@
 package cz.vse.adventura.logika;
 
 
-import cz.vse.adventura.entity.Batoh;
-import cz.vse.adventura.entity.Prostor;
-import cz.vse.adventura.entity.Vec;
-import cz.vse.adventura.entity.VelkaVec;
+import cz.vse.adventura.entity.*;
 
 import java.util.*;
 
@@ -39,21 +36,14 @@ public class HerniPlan {
      *  Jako výchozí aktuální prostor nastaví domeček.
      */
     private void zalozProstoryHry() {
-        // vytvářejí se jednotlivé prostory
-        Prostor domecek = new Prostor("domeček","domeček, ve kterém bydlí Karkulka");
-        Prostor chaloupka = new Prostor("chaloupka", "chaloupka, ve které bydlí babička Karkulky");
-        Prostor jeskyne = new Prostor("jeskyně","stará plesnivá jeskyně");
-        Prostor les = new Prostor("les","les s jahodami, malinami a pramenem vody");
-        Prostor hlubokyLes = new Prostor("hluboký_les","temný les, ve kterém lze potkat vlka");
 
         //Prostory pro semestrální práci.
         Prostor kkStart = new Prostor("Kamaradasky_Kyblik", "Vaše restaurace, která má přesně 0 slovy nula zákazníků");
         Prostor ulice = new Prostor("ulice", "ulice Conch streets");
         Prostor krupavyKrab = new Prostor("krupavy_krab", "Křupavý krab je váš konkurent, jež se mu daří lépe než Vám, udělejte s tím něco!");
-        Prostor jidelna = new Prostor("jidelna", "Jidelna křupavého kraba");
         Prostor kuchyn = new Prostor("kuchyn", "Zde se dělá Krabí Hambáč, nedělá ho nikdo jiný než Spongebob v Kalhotách");
         Prostor kancelar = new Prostor("kancelar", "Zde sídlí pan Krabs a taky tajný recept.");
-        Prostor sejf = new Prostor("sejf", "Za tímto sejfem je Tajný recept na krabí hambáč.");
+        LockedProstor sejf = new LockedProstor("sejf", "Za tímto sejfem je Tajný recept na krabí hambáč.", "30111942");
         Prostor sejfIn = new Prostor("vnitrek", "Dostal ses dovnitř najdi recept.");
         //Zachody
         Prostor wc = new Prostor("zachody", "Zde jsou záchody");
@@ -63,36 +53,68 @@ public class HerniPlan {
         Prostor sepiakDum = new Prostor("sepiak_dum", "Dům ve kterém bydlí Sépiák");
         Prostor patrikDum = new Prostor("patrik_dum", "Tady bydlí Patrik hvězdice, je to kámen...");
 
-
-
-
         //Kamaradsky kyblik start
         kkStart.setVychod(ulice);
+
 
         ulice.setVychod(krupavyKrab);
         ulice.setVychod(spongebobDum);
         ulice.setVychod(sepiakDum);
         ulice.setVychod(patrikDum);
 
-        krupavyKrab.setVychod(jidelna);
-
-        jidelna.setVychod(kuchyn);
-        jidelna.setVychod(kancelar);
-        jidelna.setVychod(wc);
+        krupavyKrab.setVychod(kuchyn);
+        krupavyKrab.setVychod(kancelar);
+        krupavyKrab.setVychod(wc);
 
         kancelar.setVychod(sejf);
 
         sejf.setVychod(sejfIn);
+        sejfIn.setVychod(sejf);
 
         wc.setVychod(zachod1);
         wc.setVychod(zachod2);
 
+        //KK velke veci.
+        VelkaVec kasa_kk = new VelkaVec("Kasa", "Kvůli nulovým prodejům tu máš přesně 0 USD");
+        VelkaVec stul_KK = new VelkaVec("Stůl", "stůl pro zákazníky");
+        VelkaVec zidle_KK = new VelkaVec("Židle", "zidle ke stolu pt.1");
+        VelkaVec zidle1_KK = new VelkaVec("Židle2", "zidle ke stolu pt.2");
+        kkStart.setVeciNaZemi(kasa_kk);
+        kkStart.setVeciNaZemi(stul_KK);
+        kkStart.setVeciNaZemi(zidle_KK);
+        kkStart.setVeciNaZemi(zidle1_KK);
+        //KK male veci
+        Vec prach = new Vec("prach", "prach a špína.");
+        kkStart.setVeciNaZemi(prach);
+        //KK NPCs
 
-        Vec mec = new Vec("hovna", "Mec dava damage");
-        VelkaVec postel = new VelkaVec("Postel", "Postel kde spíš");
+        //ulice velké veci.
+        VelkaVec velkysutr = new VelkaVec("Šutr", "obří kámen/šutr");
+        ulice.setVeciNaZemi(velkysutr);
+        //ulice male veci
+        Vec kaminek = new Vec("kaminek", "Nic nedělá, ale vypadá jako cool kamínek");
+        ulice.setVeciNaZemi(kaminek);
+        //ulice NPCs
+
+        //Krupavy Krab velke veci.
+        VelkaVec stul_krab = new VelkaVec("Stůl","Stůl pro zákazníky");
+        VelkaVec zidle_krab = new VelkaVec("Židle", "židle pro zákazníky");
+        VelkaVec zidle_krab2 = new VelkaVec("Židle2", "židle pro zákazníky");
+        VelkaVec zakaznik1 = new VelkaVec("Zákazník", "zákazník");
+        VelkaVec kasa_krab = new VelkaVec("Kasa", "Kasa křupavého Kraba, za ní stojí Sépiák.");
+        krupavyKrab.setVeciNaZemi(stul_krab);
+        krupavyKrab.setVeciNaZemi(zidle_krab2);
+        krupavyKrab.setVeciNaZemi(zidle_krab);
+        krupavyKrab.setVeciNaZemi(zakaznik1);
+        krupavyKrab.setVeciNaZemi(kasa_krab);
+        //Krupavy Krab male veci
+        Vec hamburger = new Vec("hambáč", "Krabí hambáč");
+        Vec ubrousek = new Vec("ubrousek", "ubrousek");
+        krupavyKrab.setVeciNaZemi(hamburger);
+        krupavyKrab.setVeciNaZemi(ubrousek);
 
 
-                
+
         aktualniProstor = kkStart;  // hra začíná v domečku
     }
     
@@ -149,7 +171,6 @@ public class HerniPlan {
                 } else {
                     return nazev + " v prostoru není";
                 }
-
             } catch (IllegalStateException exception) {
                 return exception.getMessage();
             }
@@ -182,16 +203,17 @@ public class HerniPlan {
 
     // Vrátí, co všechno se nachází v batohu hráče.
     public String vypisBatoh() {
-        System.out.println("Vypisuji batoh...");
         LinkedHashMap<String, Vec> inventar = aktualniBatoh.getInventory();
         Set<String> nazvyveci = new HashSet<>();
         for (Vec veci : inventar.values()) {
             if(!veci.isMoveable()) {
+                final String BLUE_font = "\033[36;3m";
+                if (!veci.isNPC()) {
                 //Styl a barva textů
-                final String RED_ITALIC = "\033[31m";
+                final String RED_font = "\033[31m";
                 final String RESET = "\033[0m";
-                String styledNazev = RED_ITALIC + veci.getNazev() + RESET;
-                nazvyveci.add(styledNazev);
+                String styledNazev = RED_font + veci.getNazev() + RESET;
+                nazvyveci.add(styledNazev);}
             }
             else {
                 nazvyveci.add(veci.getNazev());
@@ -201,26 +223,40 @@ public class HerniPlan {
         return vysledek;
     }
     public String vypisProstor() {
-        System.out.println("Vypisuji prostor...");
         String vychody = aktualniProstor.popisVychodu();
         Set<Vec> veci = aktualniProstor.vratVeciNaZemi();
         Set<String> nazvyveci = new HashSet<>();
         for (Vec vec : veci) {
             if(!vec.isMoveable()) {
-                final String RED_ITALIC = "\033[31m";
-                final String RESET = "\033[0m";
-                String styledNazev = RED_ITALIC + vec.getNazev() + RESET;
-                nazvyveci.add(styledNazev);
+                final String BLUE_font = "\033[36;3m";
+                if (!vec.isNPC()) {
+                    //Styl a barva textů
+                    final String RED_font = "\033[31m";
+                    final String RESET = "\033[0m";
+                    String styledNazev = RED_font + vec.getNazev() + RESET;
+                    nazvyveci.add(styledNazev);}
             }
             else {
                 nazvyveci.add(vec.getNazev());
             }
         }
 
-        String vyseledek = "Veci na zemi: " + nazvyveci + "\n"
+        String actualLocation = "Jsi v místnosti " + getAktualniProstor().getNazev() + "\n";
+        String vyseledek = actualLocation + "Veci na zemi: " + nazvyveci + "\n"
                 + vychody;
 
         return vyseledek;
+    }
+
+    public String odemkniProstor(Prostor prostor, String password) {
+        if(password.contains(prostor.getPassword())) {
+            aktualniProstor = prostor;
+            prostor.setLocked(false);
+            return "Prostor úspěšně odemčen, vstupuješ do místnosti:" + prostor.getNazev();
+        }
+        else {
+            return "Špatné heslo, odemkni znova jiným heslem.";
+        }
     }
 
 

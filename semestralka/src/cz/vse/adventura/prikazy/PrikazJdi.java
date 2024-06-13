@@ -46,8 +46,10 @@ public class PrikazJdi implements IPrikaz {
 
         if (sousedniProstor == null) {
             return "Tam se odsud jít nedá!";
-        }
-        else {
+        } else if (sousedniProstor.isLocked()) {
+            return "Tento prostor je zamknutý, použij příkaz \"odemkni\", musíš znát i heslo abys prostor odemkl!";
+
+        } else {
             plan.setAktualniProstor(sousedniProstor);
             return sousedniProstor.dlouhyPopis();
         }

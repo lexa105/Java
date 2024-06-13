@@ -21,6 +21,8 @@ public class Prostor {
     private String popis;
     private Set<Prostor> vychody;   // obsahuje sousední místnosti
     private Map<String, Vec> veciNaZemi;
+    protected boolean isLocked = false;
+    protected String password;
 
     /**
      * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
@@ -111,6 +113,10 @@ public class Prostor {
         return nazev;       
     }
 
+    public boolean isLocked() {
+        return this.isLocked;
+    }
+
     /**
      * Vrací "dlouhý" popis prostoru, který může vypadat následovně: Jsi v
      * mistnosti/prostoru vstupni hala budovy VSE na Jiznim meste. vychody:
@@ -191,5 +197,13 @@ public class Prostor {
             return null;
         }
 
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
