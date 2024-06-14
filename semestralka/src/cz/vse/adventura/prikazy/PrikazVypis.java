@@ -9,7 +9,7 @@ import java.util.*;
 
 public class PrikazScan implements IPrikaz{
 
-    private static final String NAZEV = "vypiš";
+    private static final String NAZEV = "vypis";
     private HerniPlan plan;
 
     public PrikazScan(HerniPlan plan) {
@@ -24,7 +24,7 @@ public class PrikazScan implements IPrikaz{
         System.out.print("Vypisuji " + scanning);
         for (int i = 0; i < 3; i++) {
             System.out.print(".");
-            Thread.sleep(500);
+            Thread.sleep(200);
         }
         System.out.print("\n");
 
